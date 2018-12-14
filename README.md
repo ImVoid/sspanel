@@ -1,5 +1,8 @@
 # sspanel-docker
 Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.com/NimaQu/ss-panel-v3-mod_Uim)。
+本项目未集成Nginx代理，用户需要自行配置Nginx代理的方式，并根据需要映射9000端口到宿主或则其他容器中.Nginx配置文件会自动根
+据用户提供的DOMAIN配置Nginx,并保存在容器内`/var/www/html/sspanel/ngxconf/sspanel.ngx.conf`，用户应使用该配置文件，SSL证
+书则保存在`/var/www/html/sspanel/ssl/`中，请按需求配置`sspanel.ngx.conf`的证书部分。
 
 ## 可用标签
 - v2.2.0-stretch[(Dockerfile)](https://github.com/ImVoid/sspanel/blob/master/v2.2.0/stretch/Dockerfile)
@@ -10,7 +13,7 @@ Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.c
 **基本设置**
 - `DEBUG` 调试模式
 - `APP_NAME` 应用名称
-- `DOMAIN` 应用访问地址（带协议） √
+- `DOMAIN` 系统域名 √
 - `MU_KEY` 应用校验密码（与后端校验用） √
 - `DB_HOST` 数据库地址 √
 - `DB_DATABASE` 数据库名称 √
@@ -62,3 +65,45 @@ Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.c
 ## 注意事项
 本项目依赖于[CloudFlare](https://www.cloudflare.com/)提供的DNS解析，用户需要预先在[CloudFlare](https://www.cloudflare.com/)
 解析域名到服务器公网地址（可使用代理方式），并且获取账户相关的CF_KEY。
+
+## 一个开箱最小即用的Dockercpmpose配置
+用户需要根据实际情况填写environment部分的环境变量
+```
+version: "3"
+
+volumes:
+  sspanel:
+  ngxconf:
+
+services:
+  webapp:
+    container_name: sspanel
+    image: sspanel:v2.2.0
+    build: .
+    restart: always
+    volumes:
+      - sspanel:/var/www/html/sspanel/
+    environment:
+      - DOMAIN=demo.sspanel.com
+      - MU_KEY=sspanelKey
+      - DB_HOST=127.0.0.1
+      - DB_DATABASE=sspanel
+      - DB_USERNAME=sspanel
+      - DB_PASSWORD=123456
+      - CF_KEY=cfkeycfkeycfkeycfkeycfkey
+      - CF_EMAIL=sspanel@gmail.com
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - webapp
+    volumes:
+      - ngxconf:/etc/nginx/
+      - sspanel:/var/www/html/sspanel/
+      - /root/.acme.sh/:/root/.acme.sh/
+```
