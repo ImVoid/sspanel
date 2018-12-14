@@ -2,7 +2,7 @@
 Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.com/NimaQu/ss-panel-v3-mod_Uim)。
 本项目未集成Nginx代理，用户需要自行配置Nginx代理的方式，并根据需要映射9000端口到宿主或则其他容器中.Nginx配置文件会自动根
 据用户提供的DOMAIN配置Nginx,并保存在容器内`/var/www/html/sspanel/ngxconf/sspanel.ngx.conf`，用户应使用该配置文件，SSL证
-书则保存在`/var/www/html/sspanel/ssl/`中，请按需求配置`sspanel.ngx.conf`的证书部分。
+书则保存在`/var/www/html/sspanel/ssl/`中，请按需求配置`/var/www/html/sspanel/ngxconf/sspanel.ngx.conf`的证书部分。
 
 ## 可用标签
 - v2.2.0-stretch[(Dockerfile)](https://github.com/ImVoid/sspanel/blob/master/v2.2.0/stretch/Dockerfile)
@@ -73,8 +73,8 @@ version: "3"
 
 volumes:
   sspanel:
-  ngxconf:
   sspanel_ssl:
+  sspanel_ngxconf:
 
 services:
   webapp:
@@ -84,6 +84,7 @@ services:
     volumes:
       - sspanel:/var/www/html/sspanel/
       - sspanel_ssl:/var/www/html/sspanel/ssl/
+      - sspanel_ngxconf:/var/www/html/sspanel/ngxconf/
     environment:
       - DOMAIN=demo.sspanel.com
       - MU_KEY=sspanelKey
@@ -107,4 +108,5 @@ services:
       - ngxconf:/etc/nginx/
       - sspanel:/var/www/html/sspanel/
       - sspanel_ssl:/etc/nginx/ssl/
+      - sspanel_ngxconf:/etc/nginx/conf.d/
 ```
