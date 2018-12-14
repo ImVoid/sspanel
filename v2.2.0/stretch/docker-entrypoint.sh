@@ -183,7 +183,7 @@ mkdir ${WORK_DIR}ssl
     --fullchain-file ${WORK_DIR}ssl/${DOMAIN}.cer \
     --reloadcmd "service nginx force-reload"
 
-echo -e "----------SSL证书获取开始----------\n"
+echo -e "----------nginx配置开始----------\n"
 #ngx配置
 sed -i "s|ssl_certificate\s\+.*\.cer;|ssl_certificate /etc/nginx/ssl/${DOMAIN}.cer;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
 sed -i "s|ssl_certificate_key\s\+.*\.key;|ssl_certificate_key /etc/nginx/ssl/${DOMAIN}.key;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
