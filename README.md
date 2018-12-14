@@ -1,18 +1,21 @@
 # sspanel-docker
-Docker方式搭建最新代码的sspanel
+Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.com/NimaQu/ss-panel-v3-mod_Uim)。
 
-源码版本：v2.2.0
+## 可用标签
+- v2.2.0-stretch[(Dockerfile)](https://github.com/ImVoid/sspanel/blob/master/v2.2.0/stretch/Dockerfile)
 
 ## 环境变量
+> 以下选项中打钩√的是必选项，缺失这些选项系统将不能正常运行
+
 **基本设置**
 - `DEBUG` 调试模式
 - `APP_NAME` 应用名称
-- `DOMAIN` 应用访问地址（带协议）
-- `MU_KEY` 应用校验密码（与后端校验用）
-- `DB_HOST` 数据库地址
-- `DB_DATABASE` 数据库名称
-- `DB_USERNAME` 数据库用户名
-- `DB_PASSWORD` 数据库密码
+- `DOMAIN` 应用访问地址（带协议） √
+- `MU_KEY` 应用校验密码（与后端校验用） √
+- `DB_HOST` 数据库地址 √
+- `DB_DATABASE` 数据库名称 √
+- `DB_USERNAME` 数据库用户名 √
+- `DB_PASSWORD` 数据库密码 √
 
 **邮箱设置**
 - `MAIL_DRIVER` 发件方式
@@ -53,5 +56,9 @@ Docker方式搭建最新代码的sspanel
 - `ENABLE_DETECT_OFFLINE` 是否开启离线检测
 
 **SSL证书**
-- `CF_KEY` CloudFlare key
-- `CF_EMAIL` CloudFlare 关联的邮箱
+- `CF_KEY` CloudFlare key √
+- `CF_EMAIL` CloudFlare 关联的邮箱 √
+
+## 注意事项
+本项目依赖于[CloudFlare](https://www.cloudflare.com/)提供的DNS解析，用户需要预先在[CloudFlare](https://www.cloudflare.com/)
+解析域名到服务器公网地址（可使用代理方式），并且获取账户相关的CF_KEY。
