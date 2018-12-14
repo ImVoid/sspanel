@@ -1,4 +1,5 @@
 FROM php:7.1-fpm
+MAINTAINER liuweijian
 ARG BUILD_DEPS=libfreetype6-dev\ libjpeg62-turbo-dev\ libpng-dev\ cron\ vim
 ARG BUILD_DEPS_NOT_NEED=wget\ zip\ unzip\ git
 ENV WORK_DIR /var/www/html/sspanel/
@@ -12,8 +13,8 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     && docker-php-ext-install pdo pdo_mysql
 
 WORKDIR $WORK_DIR
-RUN wget -O /usr/local/src/sspanel.tar.gz https://github.com/NimaQu/ss-panel-v3-mod_Uim/archive/v2.2.0.tar.gz \
-        && tar -zxf /usr/local/src/sspanel.tar.gz -C /var/www/html/ \
+RUN wget -O /usr/local/src/sspanel.tar.gz https://github.com/NimaQu/ss-panel-v3-mod_Uim/archive/v2.2.0.tar.gz
+RUN tar -zxf /usr/local/src/sspanel.tar.gz -C /var/www/html/ \
         && mv /var/www/html/ss-panel-v3-mod_Uim-2.2.0/* . \
         && cp config/.config.php.example config/.config.php \
         && rm -rf /var/www/html/ss-panel-v3-mod_Uim-2.2.0 \
@@ -40,5 +41,5 @@ COPY image/front-icon.png public/images/front-icon.png
 COPY image/menu-logo.gif public/images/menu-logo.gif
 COPY image/bg.jpg public/images/bg.jpg
 COPY image/favicon.ico public/favicon.ico
-ENTRYPOINT ["docker-entrypoint.sh"]
+#ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["php-fpm"]
