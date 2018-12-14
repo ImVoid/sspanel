@@ -66,7 +66,7 @@ Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.c
 本项目依赖于[CloudFlare](https://www.cloudflare.com/)提供的DNS解析，用户需要预先在[CloudFlare](https://www.cloudflare.com/)
 解析域名到服务器公网地址（可使用代理方式），并且获取账户相关的CF_KEY。
 
-## 一个开箱最小即用的Dockercpmpose配置
+## 一个最小开箱即用的Dockercpmpose配置
 用户需要根据实际情况填写environment部分的环境变量
 ```
 version: "3"
