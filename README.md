@@ -79,7 +79,7 @@ services:
   webapp:
     container_name: sspanel
     image: sspanel:v2.2.0
-    build: .
+    build: liuweijian/sspanel:v2.2.0-stretch
     restart: always
     volumes:
       - sspanel:/var/www/html/sspanel/
