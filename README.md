@@ -74,6 +74,7 @@ version: "3"
 volumes:
   sspanel:
   ngxconf:
+  sspanel_ssl:
 
 services:
   webapp:
@@ -82,6 +83,7 @@ services:
     restart: always
     volumes:
       - sspanel:/var/www/html/sspanel/
+      - sspanel_ssl:/var/www/html/sspanel/ssl/
     environment:
       - DOMAIN=demo.sspanel.com
       - MU_KEY=sspanelKey
@@ -104,5 +106,5 @@ services:
     volumes:
       - ngxconf:/etc/nginx/
       - sspanel:/var/www/html/sspanel/
-      - /root/.acme.sh/:/root/.acme.sh/
+      - sspanel_ssl:/etc/nginx/ssl/
 ```

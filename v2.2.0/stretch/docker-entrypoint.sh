@@ -185,8 +185,8 @@ mkdir ${WORK_DIR}ssl
 
 echo -e "----------SSL证书获取开始----------\n"
 #ngx配置
-sed -i "s|ssl_certificate\s\+.*\.cer;|ssl_certificate ${WORK_DIR}ssl/${DOMAIN}.cer;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
-sed -i "s|ssl_certificate_key\s\+.*\.key;|ssl_certificate_key ${WORK_DIR}ssl/${DOMAIN}.key;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
+sed -i "s|ssl_certificate\s\+.*\.cer;|ssl_certificate /etc/nginx/ssl/${DOMAIN}.cer;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
+sed -i "s|ssl_certificate_key\s\+.*\.key;|ssl_certificate_key /etc/nginx/ssl/${DOMAIN}.key;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
 sed -i "s|server_name\s\+.*;|server_name ${DOMAIN};|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
 sed -i "s|root\s\+.*;|root ${WORK_DIR}public/;|" ${WORK_DIR}ngxconf/sspanel.ngx.conf
 
