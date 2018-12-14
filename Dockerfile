@@ -35,11 +35,12 @@ RUN tar -zxf /usr/local/src/sspanel.tar.gz -C /var/www/html/ \
 RUN apt-get -y --purge remove ${BUILD_DEPS_NOT_NEED}
 
 COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 COPY sspanel.ngx.conf ngxconf/
 COPY image/bg.jpg public/images/bg.jpg
 COPY image/front-icon.png public/images/front-icon.png
 COPY image/menu-logo.gif public/images/menu-logo.gif
 COPY image/bg.jpg public/images/bg.jpg
 COPY image/favicon.ico public/favicon.ico
-#ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["php-fpm"]
