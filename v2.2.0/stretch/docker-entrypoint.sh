@@ -192,7 +192,7 @@ sed -i "s|root\s\+.*;|root ${WORK_DIR}public/;|" ${WORK_DIR}ngxconf/sspanel.ngx.
 
 #sspanel网站更改
 sed -i "s|<div\sclass=\"logo\">|<div>|" ${WORK_DIR}resources/views/material/index.tpl
-#sed -i "s|<span\sclass=\"icon\sfa-rocket\"></span>|<span><img src="/images/front-icon.png" height="100" width="100"></span>|" ${WORK_DIR}resources/views/material/index.tpl
+sed -i "s|<span\sclass=\"icon\sfa-rocket\"></span>|<span><img src="/images/front-icon.png" height="100" width="100"></span>|" ${WORK_DIR}resources/views/material/index.tpl
 #sed -i "s|<p>「ホワイトアルバムの季節」が、また、やってきた。</p>|<p>- 在 这 里 呼 吸 自 由 的 空 气 -</p><p>在阳光灿烂的日子里开怀大笑 </p><p>在自由自在的空气里吵吵闹闹</p>|" ${WORK_DIR}resources/views/material/index.tpl
 
 echo -e "----------php-fpKm开始----------\n"
