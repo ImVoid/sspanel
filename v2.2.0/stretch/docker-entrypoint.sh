@@ -180,8 +180,7 @@ export CF_Email="${CF_EMAIL}"
 mkdir ${WORK_DIR}ssl
 /root/.acme.sh/acme.sh --installcert -d ${DOMAIN} \
     --key-file ${WORK_DIR}ssl/${DOMAIN}.key \
-    --fullchain-file ${WORK_DIR}ssl/${DOMAIN}.cer \
-    --reloadcmd "service nginx force-reload"
+    --cert-file ${WORK_DIR}ssl/${DOMAIN}.cer
 
 echo -e "----------nginx配置开始----------\n"
 #ngx配置
