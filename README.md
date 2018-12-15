@@ -67,7 +67,7 @@ Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.c
 解析域名到服务器公网地址（可使用代理方式），并且获取账户相关的CF_KEY。
 
 ## 一个最小开箱即用的Dockercpmpose配置
-用户需要根据实际情况填写environment部分的环境变量
+用户需要根据实际情况填写environment部分的环境变量,所有容器运行后需要等待5分钟后方可正常使用
 ```
 version: "3"
 
