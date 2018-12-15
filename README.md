@@ -74,7 +74,10 @@ version: "3"
 volumes:
   sspanel:
   sspanel_ssl:
-  sspanel_ngxconf:
+  ngxconf:
+  
+networks:
+  ssnet:
 
 services:
   sspanel:
@@ -85,6 +88,8 @@ services:
       - sspanel:/var/www/html/sspanel/
       - sspanel_ssl:/var/www/html/sspanel/ssl/
       - sspanel_ngxconf:/var/www/html/sspanel/ngxconf/
+    networks:
+      - ssnet
     environment:
       - DOMAIN=demo.sspanel.com
       - MU_KEY=sspanelKey
@@ -105,10 +110,11 @@ services:
     links:
       - webapp
     volumes:
-      - ngxconf:/etc/nginx/
       - sspanel:/var/www/html/sspanel/
       - sspanel_ssl:/etc/nginx/ssl/
-      - sspanel_ngxconf:/etc/nginx/conf.d/
-     depends_on:
-       - sspanel
+      - ngxconf:/etc/nginx/
+    networks:
+      - ssnet
+    depends_on:
+      - sspanel
 ```
