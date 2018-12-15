@@ -77,7 +77,7 @@ volumes:
   sspanel_ngxconf:
 
 services:
-  webapp:
+  sspanel:
     container_name: sspanel
     image: liuweijian/sspanel:v2.2.0-stretch
     restart: always
@@ -109,4 +109,6 @@ services:
       - sspanel:/var/www/html/sspanel/
       - sspanel_ssl:/etc/nginx/ssl/
       - sspanel_ngxconf:/etc/nginx/conf.d/
+     depends_on:
+       - sspanel
 ```
