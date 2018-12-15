@@ -176,9 +176,9 @@ echo -e "----------SSL证书获取开始----------\n"
 curl  https://get.acme.sh | sh
 export CF_Key="${CF_KEY}"
 export CF_Email="${CF_EMAIL}"
-/root/.acme.sh/acme.sh --issue --dns dns_cf -d *.${DOMAIN}
+/root/.acme.sh/acme.sh --issue --dns dns_cf -d ${DOMAIN}
 mkdir ${WORK_DIR}ssl
-/root/.acme.sh/acme.sh --installcert -d *.${DOMAIN} \
+/root/.acme.sh/acme.sh --installcert -d ${DOMAIN} \
     --key-file ${WORK_DIR}ssl/${DOMAIN}.key \
     --fullchain-file ${WORK_DIR}ssl/${DOMAIN}.cer
 
