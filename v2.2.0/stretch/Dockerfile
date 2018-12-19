@@ -4,6 +4,9 @@ ARG BUILD_DEPS=libfreetype6-dev\ libjpeg62-turbo-dev\ libpng-dev\ cron\ vim
 ARG BUILD_DEPS_NOT_NEED=wget\ zip\ unzip\ git
 ENV WORK_DIR /var/www/html/sspanel/
 
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' >/etc/timezone
+
 RUN apt-get -y update \
     && apt-get -y install ${BUILD_DEPS} ${BUILD_DEPS_NOT_NEED} \
     && rm -rf /var/lib/apt/lists/*
