@@ -1,5 +1,6 @@
 FROM php:7.1-fpm
 MAINTAINER liuweijian
+ENV REFRESHED_AT 2018-12-31
 ARG BUILD_DEPS=libfreetype6-dev\ libjpeg62-turbo-dev\ libpng-dev\ cron\ vim
 ARG BUILD_DEPS_NOT_NEED=wget\ zip\ unzip\ git
 ENV WORK_DIR /var/www/html/sspanel/
