@@ -6,6 +6,7 @@ Docker方式搭建sspanel前端，源代码来自[Github项目](https://github.c
 
 ## 可用标签
 - v2.2.0-stretch[(Dockerfile)](https://github.com/ImVoid/sspanel/blob/master/v2.2.0/stretch/Dockerfile)
+- latest-stretch[(Dockerfile)](https://github.com/ImVoid/sspanel/blob/master/latest/stretch/Dockerfile)
 
 ## 环境变量
 > 以下选项中打钩√的是必选项，缺失这些选项系统将不能正常运行
