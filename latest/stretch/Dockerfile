@@ -30,7 +30,6 @@ RUN apt-get -y update \
     && echo "*/1 * * * * php ${WORK_DIR}xcat syncnode" >> /var/spool/cron/crontabs/root \
     && echo "0 5 * * 6 php -n ${WORK_DIR}xcat backup" >> /var/spool/cron/crontabs/root \
     && echo "*/1 * * * * php ${WORK_DIR}xcat detectGFW" >> /var/spool/cron/crontabs/root \
-    && service cron start \
     && apt-get -y --purge remove ${BUILD_DEPS_NOT_NEED}
 
 COPY docker-entrypoint.sh /usr/local/bin/
