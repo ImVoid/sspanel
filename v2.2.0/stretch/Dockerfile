@@ -28,12 +28,12 @@ RUN apt-get -y update \
     && php composer.phar install \
     && php xcat initQQWry \
     && php xcat initdownload \
-    && echo "30 22 * * * php ${WORK_DIR}xcat sendDiaryMail" >> /var/spool/cron/crontabs/root \
-    && echo "0 0 * * * php -n ${WORK_DIR}xcat dailyjob" >> /var/spool/cron/crontabs/root \
-    && echo "*/1 * * * * php ${WORK_DIR}xcat checkjob" >> /var/spool/cron/crontabs/root \
-    && echo "*/1 * * * * php ${WORK_DIR}xcat syncnode" >> /var/spool/cron/crontabs/root \
-    && echo "0 5 * * 6 php -n ${WORK_DIR}xcat backup" >> /var/spool/cron/crontabs/root \
-    && echo "*/1 * * * * php ${WORK_DIR}xcat detectGFW" >> /var/spool/cron/crontabs/root \
+    && echo "30 22 * * * cd ${WORK_DIR} && php xcat sendDiaryMail" >> /v r/spool/cron/crontabs/root \
+    && echo "0 0 * * * cd ${WORK_DIR} && php xcat dailyjob" >> /var/spool/cron/crontabs/root \
+    && echo "*/1 * * * * cd ${WORK_DIR} && php xcat checkjob" >> /var/spool/cron/crontabs/root \
+    && echo "*/1 * * * * cd ${WORK_DIR} && php xcat syncnode" >> /var/spool/cron/crontabs/root \
+    && echo "0 5 * * 6 cd ${WORK_DIR} && php -n xcat backup" >> /var/spool/cron/crontabs/root \
+    && echo "*/1 * * * * cd ${WORK_DIR} && php xcat detectGFW" >> /var/spool/cron/crontabs/root \
     && apt-get -y --purge remove ${BUILD_DEPS_NOT_NEED}
 
 COPY docker-entrypoint.sh /usr/local/bin/
