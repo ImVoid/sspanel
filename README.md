@@ -119,3 +119,14 @@ services:
     depends_on:
       - sspanel
 ```
+
+##定时任务设置
+> 由于容器中cron定时任务未能顺利执行，此处使用宿主机的定时任务
+```bash
+30 22 * * * docker exec -t sspanel php /var/www/html/sspanel/xcat sendDiaryMail
+0 0 * * * docker exec -t sspanel php /var/www/html/sspanel/xcat dailyjob
+*/1 * * * * docker exec -t sspanel php /var/www/html/sspanel/xcat checkjob
+*/1 * * * * docker exec -t sspanel php /var/www/html/sspanel/xcat syncnode
+0 5 * * 6 docker exec -t sspanel php -n /var/www/html/sspanel/xcat backup
+*/1 * * * * docker exec -t sspanel php /var/www/html/sspanel/xcat detectGFW
+```
